@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@model List<MvcLogin.Models.GridViewer_Result>
+
+<h2>Dashboard: @Session["Login"]</h2>
+
+@using (Html.BeginForm("Dashboard", "Dashboard", FormMethod.Post))
+{
+    <!--
+    Name, Gender, City, Region (If the City field is selected, the region data must be filtered by
+    the selected city), Last Purchase, Classification, Seller (This field must be visible only to
+    administrator user).
+    -->
+    <fieldset>
+        <legend>Filters</legend>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a[0].Name)</td>
+                <td>@Html.TextBox("Name", null)</td>
+            </tr>
+        </table>
+    </fieldset>
+    }
+
+    <table align="center">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Phone</td>
+            <td>GenderId</td>
+            <td>CityId</td>
+            <td>RegionId</td>
+            <td>LastPurchase</td>
+            <td>ClassificationId</td>
+            @if (ViewBag.printSeller > 0)
+            {
+                <td>UserId</td>
+            }
+            <!--
+                Dump, but just a simple display
+                to improve interface jQyuery and bootstrap
+            -->
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.GenderId</td>
+                <td>@item.CityId</td>
+                <td>@item.RegionId</td>
+                <td>@item.LastPurchase</td>
+                <td>@item.ClassificationId</td>
+                @if (ViewBag.printSeller > 0)
+                {
+                    <td>@item.UserId</td>
+                }
+            </tr>
+        }
+    </table>
+

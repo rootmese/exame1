@@ -1,0 +1,74 @@
+﻿@model MvcLogin.UserSys
+
+@{
+    ViewBag.Title = "Login";
+}
+ 
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+    <fieldset>
+        <legend>Login</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div>
+                @ViewBag.Message
+            </div>
+        }
+        <table align="center">
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.Login)
+                </td>
+                @if (@ViewBag.Message != null)
+                {
+                    <td class="input-validation-error">
+                        @Html.TextBoxFor(a => a.Login)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.TextBoxFor(a => a.Login)
+                    </td>
+                }
+                <td>
+                    @Html.ValidationMessageFor(a => a.Login)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.Password)
+                </td>
+                @if (@ViewBag.Message != null)
+                {
+                    <td class="input-validation-error">
+                        @Html.PasswordFor(a => a.Password)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.PasswordFor(a => a.Password)
+                    </td>
+                }
+                <td>
+                    @Html.ValidationMessageFor(a => a.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}
+
+
