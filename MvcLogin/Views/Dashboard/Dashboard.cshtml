@@ -18,14 +18,46 @@
         <legend>Filters</legend>
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-        <table>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>@Html.TextBox("Name", null)</td>
+        </tr>
+        <tr>
+            <td>GenderId</td>
+            <td>@Html.DropDownList("GenderId", String.Empty)</td>
+        </tr>
+        <tr>
+            <td>CityId</td>
+            <td>@Html.DropDownList("CityId", String.Empty)</td>
+        </tr>
+        <tr>
+            <td>LastPurchase</td>
+            <td>@Html.DropDownList("LastPurchase", String.Empty)</td>
+        </tr>
+        <tr>
+            <td>RegionId</td>
+            <td>@Html.DropDownList("RegionId", String.Empty)</td>
+        </tr>
+        <tr>
+            <td>ClassificationId</td>
+            <td>@Html.DropDownList("ClassificationId", String.Empty)</td>
+        </tr>
+        @if (ViewBag.printSeller > 0)
+        {
             <tr>
-                <td>@Html.LabelFor(a => a[0].Name)</td>
-                <td>@Html.TextBox("Name", null)</td>
+                <td>UserId</td>
+                <td>@Html.DropDownList("UserId", String.Empty)</td>
             </tr>
-        </table>
+        }
+    <tr>
+       <!-- Reset button does not work at this scope need render using javascript lib-->
+        <td><input type="reset" value="clear" /></td>
+        <td><input type="submit" value="Filter" /></td>
+    </tr>
+    </table>
     </fieldset>
-    }
+}
 
     <table align="center">
         <tr>
